@@ -39,10 +39,15 @@ public class Cranium
 
     Timer timer = new Timer( 1000, new ActionListener() 
     {
+    	int countdown = 60;
+    	String timerString;
+
       @Override
       public void actionPerformed( ActionEvent e ) 
       {
-        textArea.append( "bla" );
+      	timerString = "" + countdown;
+        textArea.setText( timerString  );
+        countdown--;
       }
     } );
     timer.setRepeats( true );
