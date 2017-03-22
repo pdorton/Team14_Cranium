@@ -36,29 +36,39 @@ public class Cranium
 
     JTextArea textArea = new JTextArea(  );
     f.add( new JScrollPane( textArea ), BorderLayout.CENTER );
-
+	
     Timer timer = new Timer( 1000, new ActionListener() 
     {
-    	int countdown = 60;
-    	String timerString;
-
+    	
+	  int countdown = 60;
       @Override
       public void actionPerformed( ActionEvent e ) 
       {
+      	
+    	String timerString;
+      	if(countdown == 0)
+      	{
+      		System.out.println("ending");
+      		//timer.stop();
+      		/*Debug: Need to find a way to kill the frame and stop the timer.*/
+      	}
       	timerString = "" + countdown;
         textArea.setText( timerString  );
         countdown--;
+		
       }
     } );
-    timer.setRepeats( true );
     timer.start();
-    JButton button = new JButton( "Click me" );
-    button.addActionListener( e->{
-        System.out.println("Before option pane");
-        JOptionPane.showMessageDialog( f, "A message dialog" );
-        System.out.println("After option pane");
-    } );
-    f.add( button, BorderLayout.SOUTH );
+    /*while(timer.isRunning())
+    {
+    	if(countdown == 0)
+      	{
+      		timer.stop();
+      	}
+      	timerString = "" + countdown;
+        textArea.setText( timerString  );
+        countdown;
+    }*/
     f.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
     f.pack();
     f.setVisible( true );
