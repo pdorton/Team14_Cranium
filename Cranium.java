@@ -27,7 +27,8 @@ public class Cranium
 	public static String[] rollList = {"Purple","Yellow","Red","Blue","Green","Purple"};
 	public static Scanner in = new Scanner(System.in);
 	private static int numPlayers;
-	private static int startingPlayer; 
+	private static int startingPlayer;
+	private static int currentPlayer; 
 	private static int diceRolls;
 	private static boolean[] goneThisTurn; 
 	private static JOptionPane game = new JOptionPane();
@@ -43,20 +44,28 @@ public class Cranium
 
 	Cranium()
 	{//constructor for new Cranium game
-		setNumPlayers();
-		initializeGoneThisTurn(numPlayers);
-		startingPlayer = findFirstPlayer(numPlayers);
-		initScores();
-		this.board.setMinimumSize(new Dimension(1500,1500));
-		this.board.setMaximumSize(new Dimension(1500,1500));
-		JTextArea scoreTextArea = new JTextArea(1,100);
-		scoreTextArea.setFont(scoreFont);
-		this.board.add(scoreTextArea, BorderLayout.NORTH );
-		 try {
+		setNumPlayers();//calls a pop up to request the number of player from the user
+		initializeGoneThisTurn(numPlayers); // sets who has gone this turn to all false
+		currentPlayer = findFirstPlayer(numPlayers); // determins the player who will be going first
+		initScores(); // set all scores to 0 
+		this.board.setMinimumSize(new Dimension(1500,1500)); // makes sure the window is no smaller than 1500x1500
+		this.board.setMaximumSize(new Dimension(1500,1500)); // makes sure the window is no larger than 1500x1500
+		JTextArea scoreTextArea = new JTextArea(1,100); // makes a text area of 1 row and a max of 100 characters to display the score 
+		scoreTextArea.setFont(scoreFont); // sets the font of the score's text to be a specific font for readablity
+		this.board.add(scoreTextArea, BorderLayout.NORTH ); // adds the score to the top part of the window 
+		 try 
+		 { // attempt to make the board have the picture of the background from the file given
             this.board.add(new JLabel(new ImageIcon(ImageIO.read(new File("board_background_image.jpg")))), BorderLayout.CENTER);
-        } catch (IOException e) {
+         } 
+         catch (IOException e) 
+         {// if file not found
             e.printStackTrace();
-        }
+         }
+		
+
+
+
+/*following code makes a timer and closes a window after some amount of time, will be 60 in the end, 10 for testing purposes */
 		Timer timer = new Timer( 1000, new ActionListener() 
 		{
 			
@@ -76,8 +85,12 @@ public class Cranium
 
 		
 		  } 
-		} );
-		timer.start();
+		} ); // end of timer creation Debug: needs to be moved to a function to abstract this for each turn
+
+
+
+
+		timer.start(); // starts the timer
 		this.board.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
 		this.board.pack();
 		this.board.setVisible( true );
@@ -87,9 +100,20 @@ public class Cranium
 
 	public static void main( String[] args ) 
   {
-    Cranium game = new Cranium();
-    
+    Cranium game = new Cranium(); // creates a new Cranium Game
   }
+
+
+
+
+
+
+
+
+
+
+
+
 	public static void setNumPlayers()
 	{// sets the number of players for the game. 
 		int playerNum;
