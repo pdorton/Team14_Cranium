@@ -32,15 +32,15 @@ public class Cranium
   	setNumPlayers();
 	initializeGoneThisTurn(numPlayers);
 	startingPlayer = findFirstPlayer(numPlayers);
-    JFrame f = new JFrame();
+    JFrame board = new JFrame();
 
     JTextArea textArea = new JTextArea(  );
-    f.add( new JScrollPane( textArea ), BorderLayout.CENTER );
+    board.add( new JScrollPane( textArea ), BorderLayout.CENTER );
 	
     Timer timer = new Timer( 1000, new ActionListener() 
     {
     	
-	  int countdown = 60;
+	  int countdown = 10;
       @Override
       public void actionPerformed( ActionEvent e ) 
       {
@@ -49,14 +49,13 @@ public class Cranium
       	if(countdown == 0)
       	{
       		System.out.println("ending");
-      		//timer.stop();
-      		/*Debug: Need to find a way to kill the frame and stop the timer.*/
+      		board.dispatchEvent(new WindowEvent(board, WindowEvent.WINDOW_CLOSING));
       	}
       	timerString = "" + countdown;
         textArea.setText( timerString  );
         countdown--;
 		
-      }
+      } 
     } );
     timer.start();
     /*while(timer.isRunning())
@@ -69,9 +68,9 @@ public class Cranium
         textArea.setText( timerString  );
         countdown;
     }*/
-    f.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
-    f.pack();
-    f.setVisible( true );
+    board.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
+    board.pack();
+    board.setVisible( true );
   }
 	public	 static void setNumPlayers()
 	{// sets the number of players for the game. 
@@ -122,5 +121,41 @@ public class Cranium
 		int roll = random.nextInt()%6;
 		return roll -1; // to offset to find the position of the roll in the array. 
 	}
+
+
+	private static void initializeScoreKeeper(int numPlayers)
+	{// function to create and zero out the score keeping ui for the game.
+		//will be dependent on the number of player that will be playing to only display the score for the number playing. 
+
+		//as games will have a min of two player we will always initialize the first two
+
+		/*code for implementing the first two goes here*/
+
+		switch(numPlayers)
+		{
+			case(2): // if two players 
+
+				break;
+
+			case(3): // if three players
+
+				break;
+
+
+			default://technically 4 is included here 
+
+				 break;
+
+		}
+
+	}
+
+
+
+
+
+
+
+
 	
 }
