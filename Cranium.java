@@ -38,7 +38,7 @@ public class Cranium
 	private static int p3Score;
 	private static int p4Score;
 	private Font scoreFont = new Font(Font.SANS_SERIF, 3, 25); // font to display the score properly at the top of the board
-
+	private Font timerFont = new Font(Font.SANS_SERIF, 3, 16); // font to display the score properly at the top of the board
 
 
 
@@ -53,6 +53,14 @@ public class Cranium
 		JTextArea scoreTextArea = new JTextArea(1,100); // makes a text area of 1 row and a max of 100 characters to display the score 
 		scoreTextArea.setFont(scoreFont); // sets the font of the score's text to be a specific font for readablity
 		this.board.add(scoreTextArea, BorderLayout.NORTH ); // adds the score to the top part of the window 
+		JTextArea timerTextArea = new JTextArea(1,2);
+		timerTextArea.setFont(timerFont);
+		this.board.add(timerTextArea, BorderLayout.EAST);
+
+
+
+
+
 		 try 
 		 { // attempt to make the board have the picture of the background from the file given
             this.board.add(new JLabel(new ImageIcon(ImageIO.read(new File("board_background_image.jpg")))), BorderLayout.CENTER);
@@ -63,34 +71,9 @@ public class Cranium
          }
 		
 
+         startTimer(this.board);
 
 
-/*following code makes a timer and closes a window after some amount of time, will be 60 in the end, 10 for testing purposes */
-		Timer timer = new Timer( 1000, new ActionListener() 
-		{
-			
-		 int countdown = 10;
-		  @Override
-		  public void actionPerformed( ActionEvent e ) 
-		  {
-		  	
-			String timerString;
-		  	if(countdown == 0)
-		  	{// testing timer ending, Debug: remove this later
-		  		board.dispatchEvent(new WindowEvent(board, WindowEvent.WINDOW_CLOSING));
-		  	}
-		  	timerString = getScores(numPlayers);
-		    scoreTextArea.setText( timerString  );
-		    countdown--;
-
-		
-		  } 
-		} ); // end of timer creation Debug: needs to be moved to a function to abstract this for each turn
-
-
-
-
-		timer.start(); // starts the timer
 		this.board.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
 		this.board.pack();
 		this.board.setVisible( true );
@@ -199,18 +182,23 @@ public class Cranium
 		switch(player)
 		{
 			case(1):
+				//System.out.println("incrementing player 1");
 				p1Score++;
 				break;
 			case(2):
+				//System.out.println("incrementing player 2");
 				p2Score++;
 				break;
 			case(3):
+				//System.out.println("incrementing player 3");
 				p3Score++;
 				break;
 			case(4):
+				//System.out.println("incrementing player 4");
 				p4Score++;
 				break;
 			default://if not one of the players then do nothing
+				//System.out.println(player  + " is not a valid player #");
 				break;
 		}
 	}
@@ -223,7 +211,38 @@ public class Cranium
 		p4Score = 0;
 	}
 
+	private void startTimer(JFrame window)
+	{
+		/*following code makes a timer and closes a window after some amount of time, will be 60 in the end, 10 for testing purposes */
+		Timer timer = new Timer( 1000, new ActionListener() 
+		{
+			
+		 int countdown = 10;
+		  @Override
+		  public void actionPerformed( ActionEvent e ) 
+		  {
+		  	
+			String scores;
+			String timeLeft;
+		  	if(countdown == 0)
+		  	{// testing timer ending, Debug: remove this later
+		  		window.dispatchEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSING));
+		  	}
+		  	scores = getScores(numPlayers);
+		  	timeLeft = Integer.toString(countdown);
+		  	timerTextArea.setText(timeLeft);
+		    scoreTextArea.setText( scores  );
+		    countdown--;
 
+		
+		  } 
+		} ); // end of timer creation Debug: needs to be moved to a function to abstract this for each turn
+
+
+
+
+		timer.start(); // starts the timer
+	}
 
 	
 }
