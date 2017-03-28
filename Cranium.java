@@ -2,7 +2,7 @@ import java.util.*;
 import javax.swing.JOptionPane;
 import java.util.Random;
 import java.awt.event.*; // trim for only click events. 
-
+import java.awt.Dimension;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,7 +11,12 @@ import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.Timer;
-
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 
   
 // 15 spaces in game board
@@ -26,53 +31,63 @@ public class Cranium
 	private static int diceRolls;
 	private static boolean[] goneThisTurn; 
 	private static JOptionPane game = new JOptionPane();
+	JFrame board = new JFrame();
+
+
+
+
+
+
+	Cranium()
+	{//constructor for new Cranium game
+		setNumPlayers();
+		initializeGoneThisTurn(numPlayers);
+		startingPlayer = findFirstPlayer(numPlayers);
+		
+		this.board.setMinimumSize(new Dimension(1000,1000));
+		this.board.setMaximumSize(new Dimension(1000,1000));
+		JTextArea timerTextArea = new JTextArea(100,100);
+		//this.board.add( new JScrollPane( timerTextArea ), BorderLayout.East );
+		 try {
+            this.board.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File("board_background_image.jpg")))));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+		Timer timer = new Timer( 1000, new ActionListener() 
+		{
+			
+		 int countdown = 10;
+		  @Override
+		  public void actionPerformed( ActionEvent e ) 
+		  {
+		  	
+			String timerString;
+		  	if(countdown == 0)
+		  	{
+		  		System.out.println("ending");
+		  		board.dispatchEvent(new WindowEvent(board, WindowEvent.WINDOW_CLOSING));
+		  	}
+		  	timerString = "" + countdown;
+		    timerTextArea.setText( timerString  );
+		    countdown--;
+
+		
+		  } 
+		} );
+		timer.start();
+		this.board.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
+		this.board.pack();
+		this.board.setVisible( true );
+	}
 	
+
+
 	public static void main( String[] args ) 
   {
-  	setNumPlayers();
-	initializeGoneThisTurn(numPlayers);
-	startingPlayer = findFirstPlayer(numPlayers);
-    JFrame board = new JFrame();
-
-    JTextArea textArea = new JTextArea(  );
-    board.add( new JScrollPane( textArea ), BorderLayout.CENTER );
-	
-    Timer timer = new Timer( 1000, new ActionListener() 
-    {
-    	
-	  int countdown = 10;
-      @Override
-      public void actionPerformed( ActionEvent e ) 
-      {
-      	
-    	String timerString;
-      	if(countdown == 0)
-      	{
-      		System.out.println("ending");
-      		board.dispatchEvent(new WindowEvent(board, WindowEvent.WINDOW_CLOSING));
-      	}
-      	timerString = "" + countdown;
-        textArea.setText( timerString  );
-        countdown--;
-		
-      } 
-    } );
-    timer.start();
-    /*while(timer.isRunning())
-    {
-    	if(countdown == 0)
-      	{
-      		timer.stop();
-      	}
-      	timerString = "" + countdown;
-        textArea.setText( timerString  );
-        countdown;
-    }*/
-    board.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
-    board.pack();
-    board.setVisible( true );
+    Cranium game = new Cranium();
+    
   }
-	public	 static void setNumPlayers()
+	public static void setNumPlayers()
 	{// sets the number of players for the game. 
 		int playerNum;
 		playerNum = Integer.parseInt(JOptionPane.showInputDialog("How many players will there be? \n\n (between 2 - 4)"));
@@ -149,7 +164,6 @@ public class Cranium
 		}
 
 	}
-
 
 
 
