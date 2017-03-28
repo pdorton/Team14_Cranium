@@ -32,10 +32,10 @@ public class Cranium
 	private static boolean[] goneThisTurn; 
 	private static JOptionPane game = new JOptionPane();
 	JFrame board = new JFrame();
-	private int p1Score;
-	private int p2Score;
-	private int p3Score;
-	private int p4Score;
+	private static int p1Score;
+	private static int p2Score;
+	private static int p3Score;
+	private static int p4Score;
 	private Font scoreFont = new Font(Font.SANS_SERIF, 3, 25); // font to display the score properly at the top of the board
 
 
@@ -70,7 +70,7 @@ public class Cranium
 		  	{// testing timer ending, Debug: remove this later
 		  		board.dispatchEvent(new WindowEvent(board, WindowEvent.WINDOW_CLOSING));
 		  	}
-		  	timerString = "\t\t\tPlayer 1: " + p1Score + "\t\tPlayer 2: " + p2Score + "\t\tPlayer 3: " + p3Score + "\t\tPlayer 4: " + p4Score;
+		  	timerString = getScores(numPlayers);
 		    scoreTextArea.setText( timerString  );
 		    countdown--;
 
@@ -141,30 +141,32 @@ public class Cranium
 	}
 
 
-	private static void initializeScoreKeeper(int numPlayers)
+	private static String getScores(int numPlayers)
 	{// function to create and zero out the score keeping ui for the game.
 		//will be dependent on the number of player that will be playing to only display the score for the number playing. 
 
 		//as games will have a min of two player we will always initialize the first two
 
 		/*code for implementing the first two goes here*/
-
+		String scoreString;
 		switch(numPlayers)
 		{
 			case(2): // if two players 
-
+				scoreString = "\t\t\t\tPlayer 1: " + p1Score + "\t\t\tPlayer 2: " + p2Score;
 				break;
 
 			case(3): // if three players
-
+				scoreString = "\t\t\tPlayer 1: " + p1Score + "\t\tPlayer 2: " + p2Score + "\t\tPlayer 3: " + p3Score;
 				break;
 
 
 			default://technically 4 is included here 
-
+				 scoreString = "\t\tPlayer 1: " + p1Score + "\t\tPlayer 2: " + p2Score + "\t\tPlayer 3: " + p3Score + "\t\tPlayer 4: " + p4Score;
 				 break;
 
 		}
+
+		return scoreString;
 
 	}
 
