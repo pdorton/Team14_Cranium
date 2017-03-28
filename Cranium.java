@@ -17,7 +17,7 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-
+import java.awt.Font;
   
 // 15 spaces in game board
 
@@ -32,8 +32,11 @@ public class Cranium
 	private static boolean[] goneThisTurn; 
 	private static JOptionPane game = new JOptionPane();
 	JFrame board = new JFrame();
-
-
+	private int p1Score;
+	private int p2Score;
+	private int p3Score;
+	private int p4Score;
+	private Font scoreFont = new Font(Font.SANS_SERIF, 3, 25); // font to display the score properly at the top of the board
 
 
 
@@ -43,13 +46,14 @@ public class Cranium
 		setNumPlayers();
 		initializeGoneThisTurn(numPlayers);
 		startingPlayer = findFirstPlayer(numPlayers);
-		
-		this.board.setMinimumSize(new Dimension(1000,1000));
-		this.board.setMaximumSize(new Dimension(1000,1000));
-		JTextArea timerTextArea = new JTextArea(100,100);
-		//this.board.add( new JScrollPane( timerTextArea ), BorderLayout.East );
+		initScores();
+		this.board.setMinimumSize(new Dimension(1500,1500));
+		this.board.setMaximumSize(new Dimension(1500,1500));
+		JTextArea scoreTextArea = new JTextArea(1,100);
+		scoreTextArea.setFont(scoreFont);
+		this.board.add(scoreTextArea, BorderLayout.NORTH );
 		 try {
-            this.board.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File("board_background_image.jpg")))));
+            this.board.add(new JLabel(new ImageIcon(ImageIO.read(new File("board_background_image.jpg")))), BorderLayout.CENTER);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -63,12 +67,11 @@ public class Cranium
 		  	
 			String timerString;
 		  	if(countdown == 0)
-		  	{
-		  		System.out.println("ending");
+		  	{// testing timer ending, Debug: remove this later
 		  		board.dispatchEvent(new WindowEvent(board, WindowEvent.WINDOW_CLOSING));
 		  	}
-		  	timerString = "" + countdown;
-		    timerTextArea.setText( timerString  );
+		  	timerString = "\t\t\tPlayer 1: " + p1Score + "\t\tPlayer 2: " + p2Score + "\t\tPlayer 3: " + p3Score + "\t\tPlayer 4: " + p4Score;
+		    scoreTextArea.setText( timerString  );
 		    countdown--;
 
 		
@@ -165,9 +168,34 @@ public class Cranium
 
 	}
 
+	private void updateScore(int player)
+	{
+		switch(player)
+		{
+			case(1):
+				p1Score++;
+				break;
+			case(2):
+				p2Score++;
+				break;
+			case(3):
+				p3Score++;
+				break;
+			case(4):
+				p4Score++;
+				break;
+			default://if not one of the players then do nothing
+				break;
+		}
+	}
 
-
-
+	private void initScores()
+	{// initializes all scores to 0
+		p1Score = 0;
+		p2Score = 0;
+		p3Score = 0;
+		p4Score = 0;
+	}
 
 
 
