@@ -53,10 +53,9 @@ public class Cranium
 		JTextArea scoreTextArea = new JTextArea(1,100); // makes a text area of 1 row and a max of 100 characters to display the score 
 		scoreTextArea.setFont(scoreFont); // sets the font of the score's text to be a specific font for readablity
 		this.board.add(scoreTextArea, BorderLayout.NORTH ); // adds the score to the top part of the window 
-		JTextArea timerTextArea = new JTextArea(1,2);
-		timerTextArea.setFont(timerFont);
-		this.board.add(timerTextArea, BorderLayout.EAST);
-
+		String scores;
+		scores = getScores(numPlayers);
+		scoreTextArea.setText(scores);
 
 
 
@@ -69,9 +68,6 @@ public class Cranium
          {// if file not found
             e.printStackTrace();
          }
-		
-
-         startTimer(this.board);
 
 
 		this.board.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
@@ -213,6 +209,9 @@ public class Cranium
 
 	private void startTimer(JFrame window)
 	{
+		JTextArea timerTextArea = new JTextArea(1,2);
+		timerTextArea.setFont(timerFont);
+		window.add(timerTextArea, BorderLayout.EAST);
 		/*following code makes a timer and closes a window after some amount of time, will be 60 in the end, 10 for testing purposes */
 		Timer timer = new Timer( 1000, new ActionListener() 
 		{
@@ -222,16 +221,15 @@ public class Cranium
 		  public void actionPerformed( ActionEvent e ) 
 		  {
 		  	
-			String scores;
 			String timeLeft;
 		  	if(countdown == 0)
 		  	{// testing timer ending, Debug: remove this later
 		  		window.dispatchEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSING));
 		  	}
-		  	scores = getScores(numPlayers);
+	
 		  	timeLeft = Integer.toString(countdown);
 		  	timerTextArea.setText(timeLeft);
-		    scoreTextArea.setText( scores  );
+		
 		    countdown--;
 
 		
