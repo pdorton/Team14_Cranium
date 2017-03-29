@@ -85,14 +85,6 @@ public class Cranium
 
 
 
-
-
-
-
-
-
-
-
 	public static void setNumPlayers()
 	{// sets the number of players for the game. 
 		int playerNum;
