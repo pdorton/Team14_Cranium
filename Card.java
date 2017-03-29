@@ -2,14 +2,32 @@
 public class Card 
 {
 	private int color;
+	/*
+		1 = blue
+		2 = yellow
+		3 = red
+		4 = green
+	*/
 	private String text;
 	private String hint;
 	private String correctAnswer;
 	private String[] answers = new String[4];
 	private JFrame window; 
 	
+	public Card(String imageLocation, int color)
+	{
+		this.color = color;
+		 try 
+		 { // attempt to make the board have the picture of the background from the file given
+            this.window.add(new JLabel(new ImageIcon(ImageIO.read(new File(imageLocation)))), BorderLayout.CENTER);
+         } 
+         catch (IOException e) 
+         {// if file not found
+            e.printStackTrace();
+         }
+	}
 	public Card[] makeDeck()
-	{// makes an array of JFrames that will represent the diffent cards
+	{// makes an array of Card objects that will represent the diffent cards
 	// this will be hardcoded and then return a Deck of "Cards" 
 		
 		
