@@ -227,10 +227,6 @@ public class Cranium
 		
 		  } 
 		} ); // end of timer creation Debug: needs to be moved to a function to abstract this for each turn
-
-
-
-
 		timer.start(); // starts the timer
 	}
 

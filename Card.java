@@ -8,12 +8,8 @@ public class Card
 		3 = red
 		4 = green
 	*/
-	private String text;
-	private String hint;
-	private String correctAnswer;
-	private String[] answers = new String[4];
 	private JFrame window; 
-	
+	private boolean used = false;
 	public Card(String imageLocation, int color)
 	{
 		this.color = color;
@@ -27,7 +23,7 @@ public class Card
          }
 	}
 	public Card[] makeDeck()
-	{// makes an array of Card objects that will represent the diffent cards
+	{// makes an array of Card objects that will represent the different cards
 	// this will be hardcoded and then return a Deck of "Cards" 
 		
 		
