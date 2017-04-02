@@ -37,7 +37,7 @@ public class Cranium
 	private static int p2Score;
 	private static int p3Score;
 	private static int p4Score;
-	private Font scoreFont = new Font(Font.SANS_SERIF, 3, 25); // font to display the score properly at the top of the board
+	private Font scoreFont = new Font(Font.SANS_SERIF, 3, 16); // font to display the score properly at the top of the board
 	private Font timerFont = new Font(Font.SANS_SERIF, 3, 16); // font to display the score properly at the top of the board
 
 
@@ -147,16 +147,16 @@ public class Cranium
 		switch(numPlayers)
 		{
 			case(2): // if two players 
-				scoreString = "\t\t\t\tPlayer 1: " + p1Score + "\t\t\tPlayer 2: " + p2Score;
+				scoreString = "\t\t\t\t\tPlayer 1: " + p1Score + "\t\t\tPlayer 2: " + p2Score;
 				break;
 
 			case(3): // if three players
-				scoreString = "\t\t\tPlayer 1: " + p1Score + "\t\tPlayer 2: " + p2Score + "\t\tPlayer 3: " + p3Score;
+				scoreString = "\t\t\t\tPlayer 1: " + p1Score + "\t\tPlayer 2: " + p2Score + "\t\tPlayer 3: " + p3Score;
 				break;
 
 
 			default://technically 4 is included here 
-				 scoreString = "\t\tPlayer 1: " + p1Score + "\t\tPlayer 2: " + p2Score + "\t\tPlayer 3: " + p3Score + "\t\tPlayer 4: " + p4Score;
+				 scoreString = "\t\t\tPlayer 1: " + p1Score + "\t\tPlayer 2: " + p2Score + "\t\tPlayer 3: " + p3Score + "\t\tPlayer 4: " + p4Score;
 				 break;
 
 		}
@@ -227,10 +227,6 @@ public class Cranium
 		
 		  } 
 		} ); // end of timer creation Debug: needs to be moved to a function to abstract this for each turn
-
-
-
-
 		timer.start(); // starts the timer
 	}
 
