@@ -53,12 +53,8 @@ public class Card
 					{// return to the first card in the deck.
 						position = 0;
 					}
-					
-					
 				}
-			
 		}
-		
 	}
 	
 	public int getColor()

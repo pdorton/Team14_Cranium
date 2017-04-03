@@ -1,7 +1,7 @@
 import java.util.*;
 import javax.swing.JOptionPane;
 import java.util.Random;
-import java.awt.event.*; // trim for only click events. 
+import java.awt.event.*; 
 import java.awt.Dimension;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
@@ -30,7 +30,8 @@ public class Cranium
 	private static int startingPlayer;
 	private static int currentPlayer; 
 	private static int diceRolls;
-	private static boolean[] goneThisTurn; 
+	private static boolean[] goneThisTurn;
+	private static int playerPiece[];
 	private static JOptionPane game = new JOptionPane();
 	JFrame board = new JFrame();
 	private static int p1Score;
@@ -45,6 +46,7 @@ public class Cranium
 	Cranium()
 	{//constructor for new Cranium game
 		setNumPlayers();//calls a pop up to request the number of player from the user
+		playerPiece = new int[numPlayers];
 		initializeGoneThisTurn(numPlayers); // sets who has gone this turn to all false
 		currentPlayer = findFirstPlayer(numPlayers); // determins the player who will be going first
 		initScores(); // set all scores to 0 
@@ -80,6 +82,7 @@ public class Cranium
 	public static void main( String[] args ) 
   {
     Cranium game = new Cranium(); // creates a new Cranium Game
+    new Dice().setVisible(true);
   }
 
 
@@ -132,7 +135,7 @@ public class Cranium
 	{// a random number generator to simulate dice rolls
 		Random random = new Random();
 		int roll = random.nextInt()%6;
-		return roll -1; // to offset to find the position of the roll in the array. 
+		return roll + 1; // to offset to find the position of the roll in the array. 
 	}
 
 

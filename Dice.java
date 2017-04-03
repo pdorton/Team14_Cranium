@@ -30,9 +30,9 @@ public class Dice extends javax.swing.JFrame
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Dice");
+        jLabel1.setText("Die");
 
-        jButton1.setText("Roll Bitch!!!");
+        jButton1.setText("Roll");
         jButton1.addActionListener(new java.awt.event.ActionListener() 
         {
             public void actionPerformed(java.awt.event.ActionEvent evt) 
@@ -64,10 +64,10 @@ public class Dice extends javax.swing.JFrame
         );
 
         pack();
-    }// </editor-fold>//GEN-END:initComponents
+    }
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) 
-    {//GEN-FIRST:event_jButton1ActionPerformed
+    {
 
         int ranNum = (int)(Math.random() * 6) + 1;
         
@@ -75,71 +75,23 @@ public class Dice extends javax.swing.JFrame
         switch(ranNum)
         {
             case 1:
-                 jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("purple.png")));
+                 jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("\\image_assets\\purple.png")));
                 break;
             case 2:
-                jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("red.png")));
+                jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("\\image_assets\\red.png")));
                 break;
             case 3:
-                jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("blue.png")));
+                jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("\\image_assets\\blue.png")));
                 break;
             case 4:
-                jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("yellow.png")));
+                jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("\\image_assets\\yellow.png")));
                 break;    
             case 5:
-                jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("green.png")));
+                jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("\\image_assets\\green.png")));
                 break;
             case 6:
-                jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("purple.png")));
+                jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("\\image_assets\\purple.png")));
                 break;
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-
-
-
-
-
-
-    /*public static void main(String args[]) 
-    {
-        System.out.println("Got here");
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) 
-            {
-                if ("Nimbus".equals(info.getName())) 
-                {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) 
-        {
-            java.util.logging.Logger.getLogger(Dice.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) 
-        {
-            java.util.logging.Logger.getLogger(Dice.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) 
-        {
-            java.util.logging.Logger.getLogger(Dice.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Dice.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-
-   
-
-
-
-
-
-       
-        java.awt.EventQueue.invokeLater(new Runnable() 
-        {
-            public void run() 
-            {
-                new Dice().setVisible(true);
-            }
-        });
     }
- */
 }
