@@ -78,13 +78,13 @@ public class Dice extends javax.swing.JFrame
                  jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("\\image_assets\\purple.png")));
                 break;
             case 2:
-                jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("\\image_assets\\red.png")));
+                jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("\\image_assets\\yellow.png")));
                 break;
             case 3:
-                jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("\\image_assets\\blue.png")));
+                jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("\\image_assets\\red.png")));
                 break;
             case 4:
-                jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("\\image_assets\\yellow.png")));
+                jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("\\image_assets\\blue.png")));
                 break;    
             case 5:
                 jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("\\image_assets\\green.png")));
