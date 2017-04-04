@@ -30,14 +30,17 @@ public class Cranium
 	private static boolean[] goneThisTurn;
 	private static int playerPiece[];
 	private static JOptionPane game = new JOptionPane();
-	JFrame board = new JFrame();
+	private JFrame board = new JFrame();
+	//private Player[] = new Player[4];
 	private static int p1Score;
 	private static int p2Score;
 	private static int p3Score;
 	private static int p4Score;
 	private Font scoreFont = new Font(Font.SANS_SERIF, 3, 16); // font to display the score properly at the top of the board
 	private Font timerFont = new Font(Font.SANS_SERIF, 3, 16); // font to display the score properly at the top of the board
+	
 
+	
 
 
 	Cranium()
@@ -58,7 +61,7 @@ public class Cranium
 		this.board.add(scoreTextArea, BorderLayout.NORTH ); // adds the score to the top part of the window 
 		scores = getScores(numPlayers);
 		scoreTextArea.setText(scores);
-
+		
 
 
 
@@ -83,6 +86,7 @@ public class Cranium
   {
     Cranium game = new Cranium(); // creates a new Cranium Game
     new Dice().setVisible(true);
+    new PiecePicker();
   }
 
 
