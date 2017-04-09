@@ -1,7 +1,7 @@
 import java.util.*;
 import javax.swing.JOptionPane;
 import java.util.Random;
-import java.awt.event.*; // trim for only click events. 
+import java.awt.event.*; 
 import java.awt.Dimension;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
@@ -18,9 +18,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.awt.Font;
-  
-// 15 spaces in game board
-
 
 public class Cranium 
 {
@@ -30,7 +27,8 @@ public class Cranium
 	private static int startingPlayer;
 	private static int currentPlayer; 
 	private static int diceRolls;
-	private static boolean[] goneThisTurn; 
+	private static boolean[] goneThisTurn;
+	private static int playerPiece[];
 	private static JOptionPane game = new JOptionPane();
 	JFrame board = new JFrame();
 	private static int p1Score;
@@ -44,16 +42,20 @@ public class Cranium
 
 	Cranium()
 	{//constructor for new Cranium game
+		JTextArea scoreTextArea = new JTextArea(1,100); // makes a text area of 1 row and a max of 100 characters to display the score 
+		String scores;
+
+
+
 		setNumPlayers();//calls a pop up to request the number of player from the user
+		playerPiece = new int[numPlayers];
 		initializeGoneThisTurn(numPlayers); // sets who has gone this turn to all false
 		currentPlayer = findFirstPlayer(numPlayers); // determins the player who will be going first
 		initScores(); // set all scores to 0 
 		this.board.setMinimumSize(new Dimension(1500,1500)); // makes sure the window is no smaller than 1500x1500
 		this.board.setMaximumSize(new Dimension(1500,1500)); // makes sure the window is no larger than 1500x1500
-		JTextArea scoreTextArea = new JTextArea(1,100); // makes a text area of 1 row and a max of 100 characters to display the score 
 		scoreTextArea.setFont(scoreFont); // sets the font of the score's text to be a specific font for readablity
 		this.board.add(scoreTextArea, BorderLayout.NORTH ); // adds the score to the top part of the window 
-		String scores;
 		scores = getScores(numPlayers);
 		scoreTextArea.setText(scores);
 
@@ -80,6 +82,7 @@ public class Cranium
 	public static void main( String[] args ) 
   {
     Cranium game = new Cranium(); // creates a new Cranium Game
+    new Dice().setVisible(true);
   }
 
 
@@ -132,7 +135,7 @@ public class Cranium
 	{// a random number generator to simulate dice rolls
 		Random random = new Random();
 		int roll = random.nextInt()%6;
-		return roll -1; // to offset to find the position of the roll in the array. 
+		return roll + 1; // to offset to find the position of the roll in the array. 
 	}
 
 
@@ -203,7 +206,7 @@ public class Cranium
 	{
 		JTextArea timerTextArea = new JTextArea(1,2);
 		timerTextArea.setFont(timerFont);
-		window.add(timerTextArea, BorderLayout.EAST);
+		window.add(timerTextArea, BorderLayout.WEST);
 		/*following code makes a timer and closes a window after some amount of time, will be 60 in the end, 10 for testing purposes */
 		Timer timer = new Timer( 1000, new ActionListener() 
 		{
@@ -228,6 +231,11 @@ public class Cranium
 		  } 
 		} ); // end of timer creation Debug: needs to be moved to a function to abstract this for each turn
 		timer.start(); // starts the timer
+	}
+
+	private void pieceSelector()
+	{
+
 	}
 
 	
