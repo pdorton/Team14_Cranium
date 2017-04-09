@@ -91,6 +91,11 @@ public class Cranium
     new PiecePicker();
     Paint.paint();
     Card[] deck = makeDeck();
+
+    for(int j = 0 ; j < numPlayers; j++)
+    {
+    	Piece player = new Piece(j, j * 10);
+    }
     for( int i = 0; i < deck.length; i++)
     {
     	displayCard(deck, deck[i].getColor());
