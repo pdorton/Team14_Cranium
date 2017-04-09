@@ -52,30 +52,7 @@ public class CardModified
 // Comment this whole main out if you want to test and run my modified Card class
 public static void main(String[] args)
 {           
-    Card[] deck = new Card[14];
-        
-    // Blue Cards
-    deck[0] = new Card("C:\\Users\\Joan\\Desktop\\Card Images\\blue_cloodle_1.jpg", 1);
-    deck[1] = new Card("C:\\Users\\Joan\\Desktop\\Card Images\\blue_cloodle_2.jpg", 1);
-    deck[2] = new Card("C:\\Users\\Joan\\Desktop\\Card Images\\blue_sensosketch_1.jpg", 2);
-        
-    // Yellow Cards
-    deck[3] = new Card("C:\\Users\\Joan\\Desktop\\Card Images\\yellow_blankout_1.jpg", 2);
-    deck[4] = new Card("C:\\Users\\Joan\\Desktop\\Card Images\\yellow_gnilleps_1.jpg", 2);
-    deck[5] = new Card("C:\\Users\\Joan\\Desktop\\Card Images\\yellow_lexicon_1.jpg", 2);
-    deck[6] = new Card("C:\\Users\\Joan\\Desktop\\Card Images\\yellow_spellbound_1.jpg", 2);
-    deck[7] = new Card("C:\\Users\\Joan\\Desktop\\Card Images\\yellow_zelpuz_1.jpg", 2);
-        
-    // Red Cards
-    deck[8] = new Card("C:\\Users\\Joan\\Desktop\\Card Images\\red_factoid_1.jpg", 3);
-    deck[9] = new Card("C:\\Users\\Joan\\Desktop\\Card Images\\red_polygraph_1.jpg", 3);
-    deck[10] = new Card("C:\\Users\\Joan\\Desktop\\Card Images\\red_selectaquest_1.jpg", 3);
-        
-    // Green Cards
-    deck[11] = new Card("C:\\Users\\Joan\\Desktop\\Card Images\\green_cameo_1.jpg", 4);
-    deck[12] = new Card("C:\\Users\\Joan\\Desktop\\Card Images\\green_copycat_1.jpg", 4);
-    deck[13] = new Card("C:\\Users\\Joan\\Desktop\\Card Images\\green_humdinger_1.jpg", 4);     
-        
+    
     // Testing to see how all cards look on scren at once and closing feauture
     for(int i=0; i<deck.length; i++)
         deck[i].showCard();

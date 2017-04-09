@@ -224,7 +224,7 @@ public class Paint extends JApplet{
 		window.setContentPane(content);
 		window.setSize(480, 270);
 		window.setLocation(100, 100);
-		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		window.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		window.setVisible(true);
 	}
 
