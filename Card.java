@@ -15,7 +15,7 @@ public class Card
 	 private int color;                   // 1=blue, 2=yellow, 3=red, 4=green
     private String imageLocation;
     public JFrame window; 
-    private boolean used = false;
+    public boolean used = false;
     
     public Card(String location, int color)
     {

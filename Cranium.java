@@ -39,15 +39,15 @@ public class Cranium
 	public static int p4Score;
 	public Font scoreFont = new Font(Font.SANS_SERIF, 3, 16); // font to display the score properly at the top of the board
 	public static Font timerFont = new Font(Font.SANS_SERIF, 3, 16); // font to display the score properly at the top of the board
-	
-
+	public static String scores;
+	public static JTextArea scoreTextArea;
 	
 
 
 	Cranium()
 	{//constructor for new Cranium game
-		JTextArea scoreTextArea = new JTextArea(1,100); // makes a text area of 1 row and a max of 100 characters to display the score 
-		String scores;
+		scoreTextArea = new JTextArea(1,100); // makes a text area of 1 row and a max of 100 characters to display the score 
+		
 
 
 
@@ -91,13 +91,12 @@ public class Cranium
     new PiecePicker();
     Paint.paint();
     Card[] deck = makeDeck();
-    displayCard(deck, 1);
-    Thread.sleep(11000);
-    displayCard(deck, 2);
-    Thread.sleep(11000);
-    displayCard(deck, 3);
-    Thread.sleep(11000);
-    displayCard(deck, 4);
+    for( int i = 0; i < deck.length; i++)
+    {
+    	displayCard(deck, deck[i].getColor());
+    	Thread.sleep(60000);
+    }
+
   }
 
 
@@ -154,7 +153,7 @@ public class Cranium
 	}
 
 
-	private static String getScores(int numPlayers)
+	public static String getScores(int numPlayers)
 	{// function to create and zero out the score keeping ui for the game.
 		//will be dependent on the number of player that will be playing to only display the score for the number playing. 
 
@@ -190,18 +189,26 @@ public class Cranium
 			case(1):
 				//System.out.println("incrementing player 1");
 				p1Score++;
+				scores = getScores(numPlayers);
+				scoreTextArea.setText(scores);
 				break;
 			case(2):
 				//System.out.println("incrementing player 2");
 				p2Score++;
+				scores = getScores(numPlayers);
+				scoreTextArea.setText(scores);
 				break;
 			case(3):
 				//System.out.println("incrementing player 3");
 				p3Score++;
+				scores = getScores(numPlayers);
+				scoreTextArea.setText(scores);
 				break;
 			case(4):
 				//System.out.println("incrementing player 4");
 				p4Score++;
+				scores = getScores(numPlayers);
+				scoreTextArea.setText(scores);
 				break;
 			default://if not one of the players then do nothing
 				//System.out.println(player  + " is not a valid player #");
@@ -226,7 +233,7 @@ public class Cranium
 		Timer timer = new Timer( 1000, new ActionListener() 
 		{
 			
-		 int countdown = 10;
+		 int countdown = 60;
 		  @Override
 		  public void actionPerformed( ActionEvent e ) 
 		  {
@@ -301,7 +308,7 @@ public class Cranium
 		System.out.println("color = " + color);
 		while(!found)
 		{// while a card of the correct color has not been found, iterate through and search for a certian color
-				if(deck[position].getColor() == color) 
+				if(deck[position].getColor() == color && deck[position].used == false) 
 				{// if the color of the card at the given position is of the needed color then display it 
 					// display the JFrame for the card. 
 					deck[position].showCard();//Debug: not been compiled yet
