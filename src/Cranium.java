@@ -168,7 +168,7 @@ public class Cranium
 
 	}
 
-	private void updateScore(int player)
+	public static void updateScore(int player)
 	{
 		switch(player)
 		{
@@ -238,5 +238,14 @@ public class Cranium
 
 	}
 
-	
+
+
+	public static int getCurrentPlayer() {
+		// TODO Auto-generated method stub
+		return currentPlayer;
+	}
+
+	public static void nextPlayer() {
+		currentPlayer = currentPlayer == numPlayers ? 1 : currentPlayer+1;
+	}
 }

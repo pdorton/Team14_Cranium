@@ -1,3 +1,9 @@
+import javax.imageio.ImageIO;
+import javax.swing.*;
+
+import java.awt.BorderLayout;
+import java.io.*;
+
 
 public class Card 
 {
@@ -26,7 +32,7 @@ public class Card
 	{// makes an array of Card objects that will represent the different cards
 	// this will be hardcoded and then return a Deck of "Cards" 
 		
-		
+		return null;
 	}
 	
 	public void displayCard(Card[] deck,int color)
@@ -45,7 +51,7 @@ public class Card
 				else
 				{// if the card at that position is the wrong color
 					
-					if(position + 1 <= deck.length())
+					if(position + 1 <= deck.length)
 					{// if there are more cards left
 						position++; // move to the next card
 					}
