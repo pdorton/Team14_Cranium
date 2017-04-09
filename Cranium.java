@@ -18,6 +18,7 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.util.concurrent.TimeUnit;
 
 public class Cranium 
 {
@@ -82,14 +83,21 @@ public class Cranium
 	
 
 
-	public static void main( String[] args ) 
+	public static void main( String[] args ) throws InterruptedException
   {
+  	int rand = diceRoll();
     Cranium game = new Cranium(); // creates a new Cranium Game
     new Dice().setVisible(true);
     new PiecePicker();
     Paint.paint();
     Card[] deck = makeDeck();
+    displayCard(deck, 1);
+    Thread.sleep(11000);
     displayCard(deck, 2);
+    Thread.sleep(11000);
+    displayCard(deck, 3);
+    Thread.sleep(11000);
+    displayCard(deck, 4);
   }
 
 
@@ -141,7 +149,7 @@ public class Cranium
 	private static int diceRoll()
 	{// a random number generator to simulate dice rolls
 		Random random = new Random();
-		int roll = random.nextInt()%6;
+		int roll = (int)random.nextInt()%3;
 		return roll + 1; // to offset to find the position of the roll in the array. 
 	}
 
@@ -252,7 +260,7 @@ public class Cranium
        	 // Blue Cards
    		 deck[0] = new Card("\\image_assets\\blue_cloodle_1.jpg", 1);
    		 deck[1] = new Card("\\image_assets\\blue_cloodle_2.jpg", 1);
-   		 deck[2] = new Card("\\image_assets\\blue_sensosketch_1.jpg", 2);
+   		 deck[2] = new Card("\\image_assets\\blue_sensosketch_1.jpg", 1);
    		     
    		 // Yellow Cards
    		 deck[3] = new Card("\\image_assets\\yellow_blankout_1.jpg", 2);
@@ -278,6 +286,7 @@ public class Cranium
 		the card that the user is trying to guess correctly */
 		int position = 0;
 		boolean found = false;
+		System.out.println("color = " + color);
 		while(!found)
 		{// while a card of the correct color has not been found, iterate through and search for a certian color
 				if(deck[position].getColor() == color) 
@@ -292,7 +301,7 @@ public class Cranium
 				else
 				{// if the card at that position is the wrong color
 					
-					if(position + 1 <= deck.length)
+					if(position + 1 < deck.length)
 					{// if there are more cards left
 						position++; // move to the next card
 					}
