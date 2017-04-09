@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.Timer;
@@ -15,9 +16,9 @@ import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.util.concurrent.TimeUnit;
 
 public class Cranium 
 {
@@ -30,14 +31,17 @@ public class Cranium
 	private static boolean[] goneThisTurn;
 	private static int playerPiece[];
 	private static JOptionPane game = new JOptionPane();
-	JFrame board = new JFrame();
+	private JFrame board = new JFrame();
+	//private Player[] = new Player[4];
 	private static int p1Score;
 	private static int p2Score;
 	private static int p3Score;
 	private static int p4Score;
 	private Font scoreFont = new Font(Font.SANS_SERIF, 3, 16); // font to display the score properly at the top of the board
-	private Font timerFont = new Font(Font.SANS_SERIF, 3, 16); // font to display the score properly at the top of the board
+	private static Font timerFont = new Font(Font.SANS_SERIF, 3, 16); // font to display the score properly at the top of the board
+	
 
+	
 
 
 	Cranium()
@@ -58,7 +62,7 @@ public class Cranium
 		this.board.add(scoreTextArea, BorderLayout.NORTH ); // adds the score to the top part of the window 
 		scores = getScores(numPlayers);
 		scoreTextArea.setText(scores);
-
+		
 
 
 
@@ -79,10 +83,21 @@ public class Cranium
 	
 
 
-	public static void main( String[] args ) 
+	public static void main( String[] args ) throws InterruptedException
   {
+  	int rand = diceRoll();
     Cranium game = new Cranium(); // creates a new Cranium Game
     new Dice().setVisible(true);
+    new PiecePicker();
+    Paint.paint();
+    Card[] deck = makeDeck();
+    displayCard(deck, 1);
+    Thread.sleep(11000);
+    displayCard(deck, 2);
+    Thread.sleep(11000);
+    displayCard(deck, 3);
+    Thread.sleep(11000);
+    displayCard(deck, 4);
   }
 
 
@@ -134,7 +149,7 @@ public class Cranium
 	private static int diceRoll()
 	{// a random number generator to simulate dice rolls
 		Random random = new Random();
-		int roll = random.nextInt()%6;
+		int roll = (int)random.nextInt()%3;
 		return roll + 1; // to offset to find the position of the roll in the array. 
 	}
 
@@ -202,7 +217,7 @@ public class Cranium
 		p4Score = 0;
 	}
 
-	private void startTimer(JFrame window)
+	private static void startTimer(JFrame window)
 	{
 		JTextArea timerTextArea = new JTextArea(1,2);
 		timerTextArea.setFont(timerFont);
@@ -238,6 +253,7 @@ public class Cranium
 
 	}
 
+<<<<<<< HEAD:src/Cranium.java
 
 
 	public static int getCurrentPlayer() {
@@ -248,4 +264,66 @@ public class Cranium
 	public static void nextPlayer() {
 		currentPlayer = currentPlayer == numPlayers ? 1 : currentPlayer+1;
 	}
+=======
+	public static Card[] makeDeck()
+	{           
+    	Card[] deck = new Card[14];
+        
+       	 // Blue Cards
+   		 deck[0] = new Card("\\image_assets\\blue_cloodle_1.jpg", 1);
+   		 deck[1] = new Card("\\image_assets\\blue_cloodle_2.jpg", 1);
+   		 deck[2] = new Card("\\image_assets\\blue_sensosketch_1.jpg", 1);
+   		     
+   		 // Yellow Cards
+   		 deck[3] = new Card("\\image_assets\\yellow_blankout_1.jpg", 2);
+   		 deck[4] = new Card("\\image_assets\\yellow_gnilleps_1.jpg", 2);
+   		 deck[5] = new Card("\\image_assets\\yellow_lexicon_1.jpg", 2);
+   		 deck[6] = new Card("\\image_assets\\yellow_spellbound_1.jpg", 2);
+   		 deck[7] = new Card("\\image_assets\\yellow_zelpuz_1.jpg", 2);
+   		     
+   		 // Red Cards
+   		 deck[8] = new Card("\\image_assets\\red_factoid_1.jpg", 3);
+   		 deck[9] = new Card("\\image_assets\\red_polygraph_1.jpg", 3);
+   		 deck[10] = new Card("\\image_assets\\red_selectaquest_1.jpg", 3);
+   		     
+   		 // Green Cards
+   		 deck[11] = new Card("\\image_assets\\green_cameo_1.jpg", 4);
+   		 deck[12] = new Card("\\image_assets\\green_copycat_1.jpg", 4);
+   		 deck[13] = new Card("\\image_assets\\green_humdinger_1.jpg", 4);     
+
+   		 return deck;
+	}
+	public static void displayCard(Card[] deck,int color)
+	{/* function to display a jframe that the user will have pop up over the game board screen to show
+		the card that the user is trying to guess correctly */
+		int position = 0;
+		boolean found = false;
+		System.out.println("color = " + color);
+		while(!found)
+		{// while a card of the correct color has not been found, iterate through and search for a certian color
+				if(deck[position].getColor() == color) 
+				{// if the color of the card at the given position is of the needed color then display it 
+					// display the JFrame for the card. 
+					deck[position].showCard();//Debug: not been compiled yet
+					found = true;
+					deck[position].setUsed(true);
+					startTimer(deck[position].window);
+					
+				}
+				else
+				{// if the card at that position is the wrong color
+					
+					if(position + 1 < deck.length)
+					{// if there are more cards left
+						position++; // move to the next card
+					}
+					else
+					{// return to the first card in the deck.
+						position = 0;
+					}
+				}
+		}
+	}
+	
+>>>>>>> refs/remotes/origin/master:Cranium.java
 }
