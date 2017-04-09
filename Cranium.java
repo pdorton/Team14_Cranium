@@ -26,19 +26,19 @@ public class Cranium
 	public static Scanner in = new Scanner(System.in);
 	private static int numPlayers;
 	private static int startingPlayer;
-	private static int currentPlayer; 
+	public static int currentPlayer; 
 	private static int diceRolls;
 	private static boolean[] goneThisTurn;
 	private static int playerPiece[];
 	private static JOptionPane game = new JOptionPane();
 	private JFrame board = new JFrame();
 	//private Player[] = new Player[4];
-	private static int p1Score;
-	private static int p2Score;
-	private static int p3Score;
-	private static int p4Score;
-	private Font scoreFont = new Font(Font.SANS_SERIF, 3, 16); // font to display the score properly at the top of the board
-	private static Font timerFont = new Font(Font.SANS_SERIF, 3, 16); // font to display the score properly at the top of the board
+	public static int p1Score;
+	public static int p2Score;
+	public static int p3Score;
+	public static int p4Score;
+	public Font scoreFont = new Font(Font.SANS_SERIF, 3, 16); // font to display the score properly at the top of the board
+	public static Font timerFont = new Font(Font.SANS_SERIF, 3, 16); // font to display the score properly at the top of the board
 	
 
 	
@@ -142,8 +142,8 @@ public class Cranium
 	{// returns the random number to choose the player that starts the game. 
 		
 		Random random = new Random();
-		int randomNumber = random.nextInt()%numPlayers;
-		return randomNumber;
+		int randomNumber = (int)random.nextInt()%numPlayers;
+		return randomNumber + 1;
 	}
 	
 	private static int diceRoll()
@@ -183,7 +183,7 @@ public class Cranium
 
 	}
 
-	private void updateScore(int player)
+	public static void updateScore(int player)
 	{
 		switch(player)
 		{
@@ -280,6 +280,18 @@ public class Cranium
    		 deck[13] = new Card("\\image_assets\\green_humdinger_1.jpg", 4);     
 
    		 return deck;
+	}
+
+
+
+	public static int getCurrentPlayer() 
+	{
+		return currentPlayer;
+	}
+
+	public static void nextPlayer() 
+	{
+		currentPlayer = currentPlayer == numPlayers ? 1 : currentPlayer+1;
 	}
 	public static void displayCard(Card[] deck,int color)
 	{/* function to display a jframe that the user will have pop up over the game board screen to show
