@@ -15,7 +15,7 @@ public class PiecePicker implements ActionListener
 	{
 		this.pieceFrame.setMinimumSize(new Dimension(800,400));
 		this.pieceFrame.setMaximumSize(new Dimension(800,400));
-		PickerButton red = new PickerButton("red");
+		JButton red = new JButton("red");
 		try 
 		{
 		  Image img = ImageIO.read(getClass().getResource("\\image_assets\\red_piece.png"));
@@ -25,21 +25,21 @@ public class PiecePicker implements ActionListener
 		{
 		  System.out.println(ex);
 		}
-			 PickerButton yellow = new PickerButton("yellow");
+			 JButton yellow = new JButton("yellow");
 		try {
 		  Image img = ImageIO.read(getClass().getResource("\\image_assets\\yellow_piece.png"));
 		  yellow.setIcon(new ImageIcon(img));
 		} catch (Exception ex) {
 		  System.out.println(ex);
 		}
-		PickerButton blue = new PickerButton("blue");
+		JButton blue = new JButton("blue");
 		try {
 		  Image img = ImageIO.read(getClass().getResource("\\image_assets\\blue_piece.png"));
 		  blue.setIcon(new ImageIcon(img));
 		} catch (Exception ex) {
 		  System.out.println(ex);
 		}
-		PickerButton green = new PickerButton("green");
+		JButton green = new JButton("green");
 		try {
 		  Image img = ImageIO.read(getClass().getResource("\\image_assets\\green_piece.png"));
 		  green.setIcon(new ImageIcon(img));

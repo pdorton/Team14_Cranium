@@ -5,7 +5,7 @@ public class PickerButton extends JButton
 	int piece;
 
 
-	public PickerButton PickerButton(String color)
+	public PickerButton JButton(String color)
 	{
 		switch(color)
 		{
