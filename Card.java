@@ -39,7 +39,7 @@ public class Card
 
         this.window = new JFrame();
         this.window.setLayout(null);
-        this.window.setSize(310, 420);
+        this.window.setSize(280, 460);
         this.window.setLocationRelativeTo(null);
         this.window.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.window.setResizable(false);
@@ -50,9 +50,9 @@ public class Card
 
         JButton correct = new JButton("Right!");
         JButton incorrect = new JButton("Wrong.");
-        imageLabel.setBounds(0, 0, 280, 300);
-        correct.setBounds(30, 300, 90, 40);
-        incorrect.setBounds(150, 300, 90, 40);
+        imageLabel.setBounds(0, 0, 280, 380);
+        correct.setBounds(30, 380, 90, 40);
+        incorrect.setBounds(150, 380, 90, 40);
         correct.setBackground(Color.green);
         incorrect.setBackground(Color.red);
 

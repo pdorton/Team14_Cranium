@@ -2,10 +2,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-/**
- * Created by belmaz on 4/9/2017.
- */
-
 public class Piece extends JFrame{
 
     public Piece(int color, int offset) {
@@ -21,7 +17,7 @@ public class Piece extends JFrame{
         });
 
         setMinimumSize(new Dimension(50,50));
-        setLocation(650 + offset, 160); //set location of the piece. we set it on the start space of the board.
+        setLocation(340 + offset, 160); //set location of the piece. we set it on the start space of the board.
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
         setAlwaysOnTop(true);

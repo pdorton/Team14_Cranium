@@ -28,7 +28,7 @@ public class Dice extends javax.swing.JFrame
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("Die");
 
@@ -75,22 +75,22 @@ public class Dice extends javax.swing.JFrame
         switch(ranNum)
         {
             case 1:
-                 jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("\\image_assets\\purple.png")));
+                 jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("purple.png")));
                 break;
             case 2:
-                jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("\\image_assets\\yellow.png")));
+                jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("yellow.png")));
                 break;
             case 3:
-                jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("\\image_assets\\red.png")));
+                jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("red.png")));
                 break;
             case 4:
-                jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("\\image_assets\\blue.png")));
+                jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("blue.png")));
                 break;    
             case 5:
-                jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("\\image_assets\\green.png")));
+                jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("green.png")));
                 break;
             case 6:
-                jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("\\image_assets\\purple.png")));
+                jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("purple.png")));
                 break;
         }
     }
